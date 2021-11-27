@@ -1,0 +1,16 @@
+C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\bin\Debug\net5.0\Fun Game - Probably Not.exe
+C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\bin\Debug\net5.0\Fun Game - Probably Not.deps.json
+C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\bin\Debug\net5.0\Fun Game - Probably Not.runtimeconfig.json
+C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\bin\Debug\net5.0\Fun Game - Probably Not.runtimeconfig.dev.json
+C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\bin\Debug\net5.0\Fun Game - Probably Not.dll
+C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\bin\Debug\net5.0\ref\Fun Game - Probably Not.dll
+C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\bin\Debug\net5.0\Fun Game - Probably Not.pdb
+C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\obj\Debug\net5.0\Fun Game - Probably Not.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\obj\Debug\net5.0\Fun Game - Probably Not.AssemblyInfoInputs.cache
+C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\obj\Debug\net5.0\Fun Game - Probably Not.AssemblyInfo.cs
+C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\obj\Debug\net5.0\Fun Game - Probably Not.csproj.CoreCompileInputs.cache
+C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\obj\Debug\net5.0\Fun Game - Probably Not.dll
+C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\obj\Debug\net5.0\ref\Fun Game - Probably Not.dll
+C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\obj\Debug\net5.0\Fun Game - Probably Not.pdb
+C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\obj\Debug\net5.0\Fun Game - Probably Not.genruntimeconfig.cache
+C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\obj\Debug\net5.0\Fun Game - Probably Not.csproj.AssemblyReference.cache

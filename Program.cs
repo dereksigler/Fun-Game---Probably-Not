@@ -1,4 +1,5 @@
 ﻿//  11/26/21 DS Added to Github
+//  11/26/21 DS Added Menu Keys
 
 using System;
 using System.Timers;
@@ -17,16 +18,36 @@ namespace Fun_Game___Probably_Not
             gametimer.AutoReset = true;
             gametimer.Enabled = true;
             gametimer.Start();
-            Console.WriteLine("Press \'q\' to quit the sample.");
             map.MapGenerate();
-            while (Console.Read() != 'q')
+            Boolean exitKey = false;
+            while (!exitKey)
             {
-                if (Console.Read() == 'l')
-                {
-                    locationmap();
+                var info = Console.ReadKey(true);
+                Console.SetCursorPosition(0, 1);
+                switch (info.KeyChar)
+                 {
+                    case 'q':
+                        Console.WriteLine("q was pressed");
+                        exitKey = true;
+                        break;
+                    case 'w':
+                        Console.WriteLine("W was pressed");
+                        break;
+                    case 'a':
+                        Console.WriteLine("A was pressed");
+                        break;
+                    case 's':
+                        Console.WriteLine("S was pressed");
+                        break;
+                    case 'd':
+                        Console.WriteLine("D was pressed");
+                        break;
+                    case 'l':
+                        Console.WriteLine("L was pressed");
+                        break;
                 }
+                
             }
-
         }
 
         // Specify what you want to happen when the Elapsed event is raised.

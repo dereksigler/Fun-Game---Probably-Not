@@ -68,7 +68,7 @@ namespace Fun_Game___Probably_Not
 					}
 				}
 
-				Console.ReadKey();
+				//Console.ReadKey();
 			}
 
 			static void FillScreen(char c)

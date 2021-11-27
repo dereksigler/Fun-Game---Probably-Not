@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +14,8 @@ namespace Fun_Game___Probably_Not
 	{
 		    
 			static Random Rng;
-		    
-			 public void MapGenerate()
+
+             public void MapGenerate()
 			{
 				// Settings
 				const int MINROOMS = 3;
@@ -24,8 +25,8 @@ namespace Fun_Game___Probably_Not
 
 				// Init
 				Console.CursorVisible = false;
-				Console.SetWindowSize(200, 50);
-				Console.SetBufferSize(200, 50);
+				Console.SetWindowSize(Console.WindowWidth, Console.WindowHeight);
+				Console.SetBufferSize(Console.WindowWidth, Console.WindowHeight);
 
 				Rng = new Random();
 

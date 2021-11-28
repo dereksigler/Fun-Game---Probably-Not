@@ -8,6 +8,8 @@ namespace Fun_Game___Probably_Not
 {
     class Monster
     {
+        public int mHP = 30;
 
+        if ()
     }
 }

@@ -13,6 +13,6 @@ namespace Fun_Game___Probably_Not
         public int mana = 100;
         public int strength = 10;
 
-        public static Timer timer = new Timer(5000);
+        
     }
 }

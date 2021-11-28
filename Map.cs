@@ -1,5 +1,6 @@
 ﻿// 11/27/21 HS Added multiple deminsional array
 
+
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -145,6 +146,12 @@ namespace Fun_Game___Probably_Not
 				Height = h;
 			}
 		}
-	}
+
+		public class PlaceObjects
+		 {
+		public static Random randNumber = new Random();
+		int placementSpace = randNumber.Next(chart.);
+    }
+}
 
 

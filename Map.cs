@@ -41,7 +41,10 @@ namespace Fun_Game___Probably_Not
 			chart[validcoordinates[rndm].x, validcoordinates[rndm].y] = "X";
 			return validcoordinates[rndm];
 		}
-
+		public void setLocation(string character, coordinate location)
+        {
+			chart[location.x, location.y] = character;
+        }
 		public void MapGenerate()
 		{
 			// Settings
@@ -154,7 +157,7 @@ namespace Fun_Game___Probably_Not
 		public class PlaceObjects
 		 {
 		public static Random randNumber = new Random();
-		int placementSpace = randNumber.Next(chart.);
+		//int placementSpace = randNumber.Next(chart.);
     }
 
 	}

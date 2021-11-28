@@ -10,6 +10,6 @@ namespace Fun_Game___Probably_Not
     {
         public int mHP = 30;
 
-        if ()
+        //if ()
     }
 }

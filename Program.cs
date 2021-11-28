@@ -16,12 +16,17 @@ namespace Fun_Game___Probably_Not
         public static void Main()
         {
             Map map = new Map();
-            playerA.name = "Bob";
+            //playerA.name = "Bob";
             gametimer.Elapsed += MyElapsedMethod;
             gametimer.AutoReset = true;
             gametimer.Enabled = true;
             gametimer.Start();
             map.MapGenerate();
+            playerA.character = "☺";
+            playerA.location = map.getLocation("open");
+            Console.SetCursorPosition(playerA.location.x, playerA.location.y);
+            Console.Write(playerA.character);
+            map.setLocation(playerA.character, playerA.location);
             Boolean exitKey = false;
             while (!exitKey)
             {
@@ -43,7 +48,7 @@ namespace Fun_Game___Probably_Not
                         Console.WriteLine("S was pressed");
                         break;
                     case 'd':
-                        Console.WriteLine("D was pressed");
+                        Console.WriteLine("D was pressed ");
                         break;
                     case 'l':
                         Console.WriteLine("L was pressed");

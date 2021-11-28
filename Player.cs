@@ -12,6 +12,8 @@ namespace Fun_Game___Probably_Not
         public int hp = 100;
         public int mana = 100;
         public int strength = 10;
+        public string character;
+        public coordinate location = new coordinate();
 
         
     }

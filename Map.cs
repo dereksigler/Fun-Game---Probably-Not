@@ -15,6 +15,8 @@ namespace Fun_Game___Probably_Not
 		    
 			static Random Rng;
 
+			public static string[,] chart = new string[Console.WindowWidth,Console.WindowHeight];
+
              public void MapGenerate()
 			{
 				// Settings
@@ -79,6 +81,7 @@ namespace Fun_Game___Probably_Not
 					string line = string.Empty;
 					for (int left = 0; left < Console.WindowWidth; left++)
 					{
+					    chart[left, top] = "wall";
 						line += c;
 					}
 
@@ -95,6 +98,7 @@ namespace Fun_Game___Probably_Not
 				{
 					for (int left = r.Left; left < r.Left + r.Width; left++)
 					{
+						chart[left, top] = "open";
 						Console.SetCursorPosition(left, top);
 						Console.Write(c);
 					}
@@ -105,6 +109,7 @@ namespace Fun_Game___Probably_Not
 			{
 				for (int x = Math.Min(xStart, xEnd); x <= Math.Max(xStart, xEnd); x++)
 				{
+					chart[x, xStart] = "open";
 					Console.SetCursorPosition(x, y);
 					Console.Write(' ');
 				}
@@ -114,6 +119,7 @@ namespace Fun_Game___Probably_Not
 			{
 				for (int y = Math.Min(yStart, yEnd); y <= Math.Max(yStart, yEnd); y++)
 				{
+					chart[yStart, y] = "open";
 					Console.SetCursorPosition(x, y);
 					Console.Write(' ');
 				}

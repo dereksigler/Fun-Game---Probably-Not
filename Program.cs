@@ -11,9 +11,12 @@ namespace Fun_Game___Probably_Not
         public static Player playerA = new Player();
         public static Timer gametimer = new Timer(1000);
         public static List<Player> monster = new List<Player>();
-        public static Map map = new Map();
+        public static coordinate location = new coordinate();
+        
         public static void Main()
         {
+            Map map = new Map();
+            playerA.name = "Bob";
             gametimer.Elapsed += MyElapsedMethod;
             gametimer.AutoReset = true;
             gametimer.Enabled = true;
@@ -44,6 +47,11 @@ namespace Fun_Game___Probably_Not
                         break;
                     case 'l':
                         Console.WriteLine("L was pressed");
+                        location = map.getLocation("open");
+                        Console.SetCursorPosition(location.x, location.y);
+                        Console.Write("X");  
+                        Console.SetCursorPosition(0, Console.WindowHeight-1);
+                        Console.Write("Valid open space at [{0},{1}]", location.x, location.y);
                         break;
                 }
                 
@@ -77,16 +85,7 @@ namespace Fun_Game___Probably_Not
             }
 
         }
-        private static void drawScreen ()
-        {
-            Console.Clear();
-            Console.WriteLine("HP left :{0}   MonsterCount:{1}", playerA.hp, monster.Count);
-            for(int y=0; y < 50; y++) { 
-                for (int x=0;x<200; x++)
-                { Console.Write(" "); }
-                Console.WriteLine(" ");                
-               }
-        }
+
 
         private static void locationmap()
         {

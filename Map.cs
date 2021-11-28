@@ -111,7 +111,7 @@ namespace Fun_Game___Probably_Not
 			{
 				for (int x = Math.Min(xStart, xEnd); x <= Math.Max(xStart, xEnd); x++)
 				{
-					chart[x, xStart] = "open";
+					chart[x, y] = "open";
 					Console.SetCursorPosition(x, y);
 					Console.Write(' ');
 				}
@@ -121,7 +121,7 @@ namespace Fun_Game___Probably_Not
 			{
 				for (int y = Math.Min(yStart, yEnd); y <= Math.Max(yStart, yEnd); y++)
 				{
-					chart[yStart, y] = "open";
+					chart[x, y] = "open";
 					Console.SetCursorPosition(x, y);
 					Console.Write(' ');
 				}

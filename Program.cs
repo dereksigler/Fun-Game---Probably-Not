@@ -19,11 +19,12 @@ namespace Fun_Game___Probably_Not
             //playerA.name = "Bob";
             gametimer.Elapsed += MyElapsedMethod;
             gametimer.AutoReset = true;
-            gametimer.Enabled = true;
-            gametimer.Start();
+            //gametimer.Enabled = true;
+            //gametimer.Start();
             map.MapGenerate();
             playerA.character = "☺";
             playerA.location = map.getLocation("open");
+            map.setLocation(playerA.character, playerA.location);
             Console.SetCursorPosition(playerA.location.x, playerA.location.y);
             Console.Write(playerA.character);
             map.setLocation(playerA.character, playerA.location);
@@ -40,15 +41,33 @@ namespace Fun_Game___Probably_Not
                         break;
                     case 'w':
                         Console.WriteLine("W was pressed");
+                        
                         break;
                     case 'a':
                         Console.WriteLine("A was pressed");
+                        location.x = playerA.location.x - 1;
+                        location.y = playerA.location.y;
+                        if (map.getLocation(location) == "open")
+                        {
+                            Console.SetCursorPosition(location.x, location.y);
+                            Console.Write(playerA.character);
+                            map.setLocation(playerA.character, location);
+                            playerA.location = location;
+                            location.x = location.x + 1;
+                            Console.SetCursorPosition(location.x, location.y);
+                            Console.Write(" ");
+                            map.setLocation("open", location);
+
+                        }
+
                         break;
                     case 's':
-                        Console.WriteLine("S was pressed");
+                        Console.WriteLine("S was pressed ");
+
                         break;
                     case 'd':
                         Console.WriteLine("D was pressed ");
+
                         break;
                     case 'l':
                         Console.WriteLine("L was pressed");

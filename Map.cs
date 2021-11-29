@@ -19,8 +19,13 @@ namespace Fun_Game___Probably_Not
 		static Random Rng = new Random();
 
 		public static string[,] chart = new string[Console.WindowWidth, Console.WindowHeight];
-//		public static string[,] chart = new string[120,30];
+		//		public static string[,] chart = new string[120,30];
 
+		public string getLocation(coordinate toFind)
+		{
+			string tempString = chart[toFind.x, toFind.y];
+			return tempString;
+		}
 		public coordinate getLocation(string toFind)
 		{
 			List<coordinate> validcoordinates = new List<coordinate>();
@@ -38,7 +43,6 @@ namespace Fun_Game___Probably_Not
 				}
 				}
 			int rndm = Rng.Next(0, validcoordinates.Count);
-			chart[validcoordinates[rndm].x, validcoordinates[rndm].y] = "X";
 			return validcoordinates[rndm];
 		}
 		public void setLocation(string character, coordinate location)

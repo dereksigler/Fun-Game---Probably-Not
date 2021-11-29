@@ -33,6 +33,7 @@ namespace Fun_Game___Probably_Not
             {
                 var info = Console.ReadKey(true);
                 Console.SetCursorPosition(0, 1);
+                coordinate newpos = new coordinate();
                 switch (info.KeyChar)
                  {
                     case 'q':
@@ -45,21 +46,18 @@ namespace Fun_Game___Probably_Not
                         break;
                     case 'a':
                         Console.WriteLine("A was pressed");
-                        location.x = playerA.location.x - 1;
-                        location.y = playerA.location.y;
-                        if (map.getLocation(location) == "open")
+                        newpos.x = playerA.location.x - 1;
+                        newpos.y = playerA.location.y;
+                        if (map.getLocation(newpos) == "open")
                         {
-                            Console.SetCursorPosition(location.x, location.y);
-                            Console.Write(playerA.character);
-                            map.setLocation(playerA.character, location);
-                            playerA.location = location;
-                            location.x = location.x + 1;
-                            Console.SetCursorPosition(location.x, location.y);
+                            Console.SetCursorPosition(playerA.location.x, playerA.location.y);
                             Console.Write(" ");
-                            map.setLocation("open", location);
-
+                            map.setLocation("open", playerA.location);
+                            Console.SetCursorPosition(newpos.x, newpos.y);
+                            Console.Write(playerA.character);
+                            map.setLocation(playerA.character, newpos);
+                            playerA.location = newpos;
                         }
-
                         break;
                     case 's':
                         Console.WriteLine("S was pressed ");
@@ -67,8 +65,19 @@ namespace Fun_Game___Probably_Not
                         break;
                     case 'd':
                         Console.WriteLine("D was pressed ");
-
-                        break;
+                        newpos.x = playerA.location.x + 1;
+                        newpos.y = playerA.location.y;
+                        if (map.getLocation(newpos) == "open")
+                        {
+                            Console.SetCursorPosition(playerA.location.x, playerA.location.y);
+                            Console.Write(" ");
+                            map.setLocation("open", playerA.location);
+                            Console.SetCursorPosition(newpos.x, newpos.y);
+                            Console.Write(playerA.character);
+                            map.setLocation(playerA.character, newpos);
+                            playerA.location = newpos;
+                        }
+                    break;
                     case 'l':
                         Console.WriteLine("L was pressed");
                         location = map.getLocation("open");

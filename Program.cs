@@ -42,7 +42,18 @@ namespace Fun_Game___Probably_Not
                         break;
                     case 'w':
                         Console.WriteLine("W was pressed");
-                        
+                        newpos.x = playerA.location.x;
+                        newpos.y = playerA.location.y - 1;
+                        if (map.getLocation(newpos) == "open")
+                        {
+                            Console.SetCursorPosition(playerA.location.x, playerA.location.y);
+                            Console.Write(" ");
+                            map.setLocation("open", playerA.location);
+                            Console.SetCursorPosition(newpos.x, newpos.y);
+                            Console.Write(playerA.character);
+                            map.setLocation(playerA.character, newpos);
+                            playerA.location = newpos;
+                        }
                         break;
                     case 'a':
                         Console.WriteLine("A was pressed");
@@ -61,7 +72,18 @@ namespace Fun_Game___Probably_Not
                         break;
                     case 's':
                         Console.WriteLine("S was pressed ");
-
+                        newpos.x = playerA.location.x;
+                        newpos.y = playerA.location.y + 1;
+                        if (map.getLocation(newpos) == "open")
+                        {
+                            Console.SetCursorPosition(playerA.location.x, playerA.location.y);
+                            Console.Write(" ");
+                            map.setLocation("open", playerA.location);
+                            Console.SetCursorPosition(newpos.x, newpos.y);
+                            Console.Write(playerA.character);
+                            map.setLocation(playerA.character, newpos);
+                            playerA.location = newpos;
+                        }
                         break;
                     case 'd':
                         Console.WriteLine("D was pressed ");

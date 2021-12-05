@@ -8,19 +8,20 @@ namespace Fun_Game___Probably_Not
 {
     class Program
     {
+        public static Player treasure = new Player();
         public static Player playerA = new Player();
         public static Timer gametimer = new Timer(1000);
         public static List<Player> monster = new List<Player>();
         public static coordinate location = new coordinate();
-        
+        public static bool generateMonster = false;
         public static void Main()
         {
             Map map = new Map();
             //playerA.name = "Bob";
-            gametimer.Elapsed += MyElapsedMethod;
+            gametimer.Elapsed += insertMonster;
             gametimer.AutoReset = true;
-            //gametimer.Enabled = true;
-            //gametimer.Start();
+            gametimer.Enabled = true;
+            gametimer.Start();
             map.MapGenerate();
             playerA.character = "☺";
             playerA.location = map.getLocation("open");
@@ -29,6 +30,11 @@ namespace Fun_Game___Probably_Not
             Console.Write(playerA.character);
             map.setLocation(playerA.character, playerA.location);
             Boolean exitKey = false;
+            treasure.character = "T";
+            treasure.location = map.getLocation("open");
+            map.setLocation(treasure.character, treasure.location);
+            Console.SetCursorPosition(treasure.location.x, treasure.location.y);
+            Console.Write(treasure.character);
             while (!exitKey)
             {
                 var info = Console.ReadKey(true);
@@ -109,12 +115,21 @@ namespace Fun_Game___Probably_Not
                         Console.Write("Valid open space at [{0},{1}]", location.x, location.y);
                         break;
                 }
-                
+                if (generateMonster == true)
+                {
+                    MyElapsedMethod();
+                    generateMonster = false;
+                }
             }
         }
 
         // Specify what you want to happen when the Elapsed event is raised.
-        private static void MyElapsedMethod(object source, ElapsedEventArgs e)
+        private static void insertMonster(object source, ElapsedEventArgs e)
+        {
+            generateMonster = true;
+
+        }
+        private static void MyElapsedMethod()
         {
             
             playerA.hp = playerA.hp - 2;

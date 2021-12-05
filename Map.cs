@@ -24,6 +24,10 @@ namespace Fun_Game___Probably_Not
 		public string getLocation(coordinate toFind)
 		{
 			string tempString = chart[toFind.x, toFind.y];
+			if (tempString == "T") 
+            {
+				tempString = "open";
+            }
 			return tempString;
 		}
 		public coordinate getLocation(string toFind)

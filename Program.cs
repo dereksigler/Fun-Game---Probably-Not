@@ -8,6 +8,7 @@ namespace Fun_Game___Probably_Not
 {
     class Program
     {
+        public static Player exit = new Player();
         public static Player treasure = new Player();
         public static Player playerA = new Player();
         public static Timer gametimer = new Timer(1000);
@@ -24,13 +25,14 @@ namespace Fun_Game___Probably_Not
             gametimer.Start();
             map.MapGenerate();
             playerA.character = "☺";
+            treasure.character = "T";
+            exit.character = "O";
             playerA.location = map.getLocation("open");
             map.setLocation(playerA.character, playerA.location);
             Console.SetCursorPosition(playerA.location.x, playerA.location.y);
             Console.Write(playerA.character);
             map.setLocation(playerA.character, playerA.location);
             Boolean exitKey = false;
-            treasure.character = "T";
             treasure.location = map.getLocation("open");
             map.setLocation(treasure.character, treasure.location);
             Console.SetCursorPosition(treasure.location.x, treasure.location.y);
@@ -114,6 +116,17 @@ namespace Fun_Game___Probably_Not
                         Console.SetCursorPosition(0, Console.WindowHeight-1);
                         Console.Write("Valid open space at [{0},{1}]", location.x, location.y);
                         break;
+                }
+                
+                if (map.foundTreasure == true)
+                {
+                    exit.location = map.getLocation("open");
+                    map.setLocation(exit.character, exit.location);
+                    Console.SetCursorPosition(exit.location.x, exit.location.y);
+                    Console.Write(exit.character);
+                    map.foundTreasure = false;
+
+                    
                 }
                 if (generateMonster == true)
                 {

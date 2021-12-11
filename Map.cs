@@ -15,7 +15,8 @@ namespace Fun_Game___Probably_Not
 
 	class Map
 	{
-
+		public bool foundExit;
+		public bool foundTreasure;
 		static Random Rng = new Random();
 
 		public static string[,] chart = new string[Console.WindowWidth, Console.WindowHeight];
@@ -27,6 +28,13 @@ namespace Fun_Game___Probably_Not
 			if (tempString == "T") 
             {
 				tempString = "open";
+				foundTreasure = true;
+				
+            }
+			if (tempString == "O")
+            {
+				tempString = "open";
+				foundExit = true;
             }
 			return tempString;
 		}
@@ -193,7 +201,7 @@ namespace Fun_Game___Probably_Not
 			Height = h;
 		}
 	}
-
+		
 }
 
 

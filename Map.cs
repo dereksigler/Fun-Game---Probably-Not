@@ -15,6 +15,7 @@ namespace Fun_Game___Probably_Not
 
 	class Map
 	{
+		
 		public bool foundExit;
 		public bool foundTreasure;
 		static Random Rng = new Random();
@@ -33,7 +34,7 @@ namespace Fun_Game___Probably_Not
             }
 			if (tempString == "O")
             {
-				tempString = "open";
+				tempString = "exit";
 				foundExit = true;
             }
 			return tempString;
@@ -61,6 +62,7 @@ namespace Fun_Game___Probably_Not
         {
 			chart[location.x, location.y] = character;
         }
+		
 		public void MapGenerate()
 		{
 			// Settings

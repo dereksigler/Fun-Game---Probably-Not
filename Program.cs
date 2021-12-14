@@ -8,6 +8,7 @@ namespace Fun_Game___Probably_Not
 {
     class Program
     {
+        public static int floorNumber = 0;
         public static Player exit = new Player();
         public static Player treasure = new Player();
         public static Player playerA = new Player();
@@ -17,6 +18,7 @@ namespace Fun_Game___Probably_Not
         public static bool generateMonster = false;
         public static void Main()
         {
+            
             Map map = new Map();
             //playerA.name = "Bob";
             gametimer.Elapsed += insertMonster;
@@ -52,7 +54,7 @@ namespace Fun_Game___Probably_Not
                         Console.WriteLine("W was pressed");
                         newpos.x = playerA.location.x;
                         newpos.y = playerA.location.y - 1;
-                        if (map.getLocation(newpos) == "open")
+                        if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit")
                         {
                             Console.SetCursorPosition(playerA.location.x, playerA.location.y);
                             Console.Write(" ");
@@ -67,7 +69,7 @@ namespace Fun_Game___Probably_Not
                         Console.WriteLine("A was pressed");
                         newpos.x = playerA.location.x - 1;
                         newpos.y = playerA.location.y;
-                        if (map.getLocation(newpos) == "open")
+                        if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit")
                         {
                             Console.SetCursorPosition(playerA.location.x, playerA.location.y);
                             Console.Write(" ");
@@ -76,13 +78,14 @@ namespace Fun_Game___Probably_Not
                             Console.Write(playerA.character);
                             map.setLocation(playerA.character, newpos);
                             playerA.location = newpos;
+                            
                         }
                         break;
                     case 's':
                         Console.WriteLine("S was pressed ");
                         newpos.x = playerA.location.x;
                         newpos.y = playerA.location.y + 1;
-                        if (map.getLocation(newpos) == "open")
+                        if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit")
                         {
                             Console.SetCursorPosition(playerA.location.x, playerA.location.y);
                             Console.Write(" ");
@@ -97,7 +100,7 @@ namespace Fun_Game___Probably_Not
                         Console.WriteLine("D was pressed ");
                         newpos.x = playerA.location.x + 1;
                         newpos.y = playerA.location.y;
-                        if (map.getLocation(newpos) == "open")
+                        if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit")
                         {
                             Console.SetCursorPosition(playerA.location.x, playerA.location.y);
                             Console.Write(" ");
@@ -132,6 +135,34 @@ namespace Fun_Game___Probably_Not
                 {
                     MyElapsedMethod();
                     generateMonster = false;
+                }
+                if (map.foundExit == true)
+                {
+                    Console.Clear();
+                    Console.WriteLine("GG Level Clear");
+                    floorNumber++;
+                    Console.WriteLine("Floor:{0}", floorNumber);
+                    System.Threading.Thread.Sleep(5000);
+                    map.MapGenerate();
+                    gametimer.Elapsed += insertMonster;
+                    gametimer.AutoReset = true;
+                    gametimer.Enabled = true;
+                    gametimer.Start();
+                    map.MapGenerate();
+                    playerA.character = "☺";
+                    treasure.character = "T";
+                    exit.character = "O";
+                    playerA.location = map.getLocation("open");
+                    map.setLocation(playerA.character, playerA.location);
+                    Console.SetCursorPosition(playerA.location.x, playerA.location.y);
+                    Console.Write(playerA.character);
+                    map.setLocation(playerA.character, playerA.location);
+                    treasure.location = map.getLocation("open");
+                    map.setLocation(treasure.character, treasure.location);
+                    Console.SetCursorPosition(treasure.location.x, treasure.location.y);
+                    Console.Write(treasure.character);
+                    map.foundExit = false;
+
                 }
             }
         }

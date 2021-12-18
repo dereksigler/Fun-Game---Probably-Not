@@ -41,7 +41,8 @@ namespace Fun_Game___Probably_Not
             map.setLocation(treasure.character, treasure.location);
             Console.SetCursorPosition(treasure.location.x, treasure.location.y);
             Console.Write(treasure.character);
-           
+
+
             while (!exitKey)
             {
                 var info = Console.ReadKey(true);
@@ -57,7 +58,7 @@ namespace Fun_Game___Probably_Not
                         Console.WriteLine("W was pressed");
                         newpos.x = playerA.location.x;
                         newpos.y = playerA.location.y - 1;
-                        if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit")
+                        if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit" || map.getLocation(newpos) == "monster")
                         {
                             Console.SetCursorPosition(playerA.location.x, playerA.location.y);
                             Console.Write(" ");
@@ -72,7 +73,7 @@ namespace Fun_Game___Probably_Not
                         Console.WriteLine("A was pressed");
                         newpos.x = playerA.location.x - 1;
                         newpos.y = playerA.location.y;
-                        if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit")
+                        if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit" || map.getLocation(newpos) == "monster")
                         {
                             Console.SetCursorPosition(playerA.location.x, playerA.location.y);
                             Console.Write(" ");
@@ -88,7 +89,7 @@ namespace Fun_Game___Probably_Not
                         Console.WriteLine("S was pressed ");
                         newpos.x = playerA.location.x;
                         newpos.y = playerA.location.y + 1;
-                        if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit")
+                        if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit" || map.getLocation(newpos) == "monster")
                         {
                             Console.SetCursorPosition(playerA.location.x, playerA.location.y);
                             Console.Write(" ");
@@ -103,7 +104,7 @@ namespace Fun_Game___Probably_Not
                         Console.WriteLine("D was pressed ");
                         newpos.x = playerA.location.x + 1;
                         newpos.y = playerA.location.y;
-                        if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit")
+                        if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit" || map.getLocation(newpos) == "monster")
                         {
                             Console.SetCursorPosition(playerA.location.x, playerA.location.y);
                             Console.Write(" ");
@@ -164,29 +165,25 @@ namespace Fun_Game___Probably_Not
                     Console.SetCursorPosition(treasure.location.x, treasure.location.y);
                     Console.Write(treasure.character);
                     map.foundExit = false;
-
+                    for (int timesRun = 0; timesRun < floorNumber; timesRun++)
+                    {
+                        enemy.location = map.getLocation("open");
+                        map.setLocation(enemy.character, enemy.location);
+                        Console.SetCursorPosition(enemy.location.x, enemy.location.y);
+                        Console.Write(enemy.character);
+                    }
                 }
 
             }
         }
 
         // Specify what you want to happen when the Elapsed event is raised.
-        public static void GenerateMonsters()
-        {
-            Map map = new Map();
-            while(floorNumber > 0)
-            {
-                enemy.location = map.getLocation("open");
-                map.setLocation(enemy.character, enemy.location);
-                Console.SetCursorPosition(enemy.location.x, enemy.location.y);
-                Console.Write(enemy.character);
-            }
-        }
+   
 
         private static void MyElapsedMethod()
         {
             
-            playerA.hp = playerA.hp - 2;
+           // playerA.hp = playerA.hp - 2;
  //           Console.WriteLine("HP left :{0}   MonsterCount:{1}", playerA.hp, monster.Count);
             //create random number
             //if matches 1 or something generate monster  (add monster)

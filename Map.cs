@@ -37,6 +37,11 @@ namespace Fun_Game___Probably_Not
 				tempString = "exit";
 				foundExit = true;
             }
+			if (tempString == "M")
+            {
+				tempString = "monster";
+
+            }
 			return tempString;
 		}
 		public coordinate getLocation(string toFind)

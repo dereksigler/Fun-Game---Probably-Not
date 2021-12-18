@@ -12,16 +12,17 @@ namespace Fun_Game___Probably_Not
         public static Player exit = new Player();
         public static Player treasure = new Player();
         public static Player playerA = new Player();
+        public static Player enemy = new Player();
         public static Timer gametimer = new Timer(1000);
         public static List<Player> monster = new List<Player>();
         public static coordinate location = new coordinate();
         public static bool generateMonster = false;
+        
         public static void Main()
         {
             
             Map map = new Map();
             //playerA.name = "Bob";
-            gametimer.Elapsed += insertMonster;
             gametimer.AutoReset = true;
             gametimer.Enabled = true;
             gametimer.Start();
@@ -29,6 +30,7 @@ namespace Fun_Game___Probably_Not
             playerA.character = "☺";
             treasure.character = "T";
             exit.character = "O";
+            enemy.character = "M";
             playerA.location = map.getLocation("open");
             map.setLocation(playerA.character, playerA.location);
             Console.SetCursorPosition(playerA.location.x, playerA.location.y);
@@ -39,6 +41,7 @@ namespace Fun_Game___Probably_Not
             map.setLocation(treasure.character, treasure.location);
             Console.SetCursorPosition(treasure.location.x, treasure.location.y);
             Console.Write(treasure.character);
+           
             while (!exitKey)
             {
                 var info = Console.ReadKey(true);
@@ -142,9 +145,8 @@ namespace Fun_Game___Probably_Not
                     Console.WriteLine("GG Level Clear");
                     floorNumber++;
                     Console.WriteLine("Floor:{0}", floorNumber);
-                    System.Threading.Thread.Sleep(5000);
+                    System.Threading.Thread.Sleep(2000);
                     map.MapGenerate();
-                    gametimer.Elapsed += insertMonster;
                     gametimer.AutoReset = true;
                     gametimer.Enabled = true;
                     gametimer.Start();
@@ -164,15 +166,23 @@ namespace Fun_Game___Probably_Not
                     map.foundExit = false;
 
                 }
+
             }
         }
 
         // Specify what you want to happen when the Elapsed event is raised.
-        private static void insertMonster(object source, ElapsedEventArgs e)
+        public static void GenerateMonsters()
         {
-            generateMonster = true;
-
+            Map map = new Map();
+            while(floorNumber > 0)
+            {
+                enemy.location = map.getLocation("open");
+                map.setLocation(enemy.character, enemy.location);
+                Console.SetCursorPosition(enemy.location.x, enemy.location.y);
+                Console.Write(enemy.character);
+            }
         }
+
         private static void MyElapsedMethod()
         {
             

@@ -17,6 +17,7 @@ namespace Fun_Game___Probably_Not
         public static List<Player> monster = new List<Player>();
         public static coordinate location = new coordinate();
         public static bool generateMonster = false;
+        public static string swordDirection = "down";
         
         public static void Main()
         {
@@ -67,6 +68,7 @@ namespace Fun_Game___Probably_Not
                             Console.Write(playerA.character);
                             map.setLocation(playerA.character, newpos);
                             playerA.location = newpos;
+                            swordDirection = "up";
                         }
                         break;
                     case 'a':
@@ -82,7 +84,7 @@ namespace Fun_Game___Probably_Not
                             Console.Write(playerA.character);
                             map.setLocation(playerA.character, newpos);
                             playerA.location = newpos;
-                            
+                            swordDirection = "left";
                         }
                         break;
                     case 's':
@@ -98,6 +100,7 @@ namespace Fun_Game___Probably_Not
                             Console.Write(playerA.character);
                             map.setLocation(playerA.character, newpos);
                             playerA.location = newpos;
+                            swordDirection = "down";
                         }
                         break;
                     case 'd':
@@ -113,6 +116,7 @@ namespace Fun_Game___Probably_Not
                             Console.Write(playerA.character);
                             map.setLocation(playerA.character, newpos);
                             playerA.location = newpos;
+                            swordDirection = "right:";
                         }
                     break;
                     case 'l':
@@ -206,6 +210,10 @@ namespace Fun_Game___Probably_Not
             }
 
         }
+        public static void Sword()
+        {
+            if()
+        }
 
 
         private static void locationmap()
@@ -229,6 +237,11 @@ namespace Fun_Game___Probably_Not
             gametimer.Start();
 
         }
+        
 
+        public static void movemonster()
+        {
+
+        }
     }
 }

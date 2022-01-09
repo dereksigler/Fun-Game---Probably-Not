@@ -6,4 +6,8 @@
     <RootNamespace>Fun_Game___Probably_Not</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Reactive.Windows.Forms" Version="5.0.0" />
+  </ItemGroup>
+
 </Project>

@@ -14,3 +14,5 @@ C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\obj\
 C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\obj\Debug\net5.0\Fun Game - Probably Not.pdb
 C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\obj\Debug\net5.0\Fun Game - Probably Not.genruntimeconfig.cache
 C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\obj\Debug\net5.0\Fun Game - Probably Not.csproj.AssemblyReference.cache
+C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\bin\Debug\net5.0\System.Reactive.Windows.Forms.dll
+C:\Users\Derek\source\repos\Fun Game - Probably Not\Fun Game - Probably Not\obj\Debug\net5.0\Fun Game - Probably Not.csproj.CopyComplete

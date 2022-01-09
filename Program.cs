@@ -8,6 +8,7 @@ namespace Fun_Game___Probably_Not
 {
     class Program
     {
+        public static Timer monsterTimer = new Timer(250);
         public static int floorNumber = 0;
         public static Player exit = new Player();
         public static Player treasure = new Player();
@@ -18,7 +19,10 @@ namespace Fun_Game___Probably_Not
         public static coordinate location = new coordinate();
         public static bool generateMonster = false;
         public static string swordDirection = "down";
-        
+        public static DateTime time = DateTime.Now;
+        public static TimeSpan interval = TimeSpan.FromSeconds(1);
+
+
         public static void Main()
         {
             
@@ -28,6 +32,7 @@ namespace Fun_Game___Probably_Not
             gametimer.Enabled = true;
             gametimer.Start();
             map.MapGenerate();
+            generateMonsters(monster, floorNumber, map);
             playerA.character = "☺";
             treasure.character = "T";
             exit.character = "O";
@@ -42,91 +47,99 @@ namespace Fun_Game___Probably_Not
             map.setLocation(treasure.character, treasure.location);
             Console.SetCursorPosition(treasure.location.x, treasure.location.y);
             Console.Write(treasure.character);
+            monsterTimer.AutoReset = true;
+            //monsterTimer.Elapsed += movemonster;
+
 
 
             while (!exitKey)
             {
-                var info = Console.ReadKey(true);
+               
+
                 Console.SetCursorPosition(0, 1);
                 coordinate newpos = new coordinate();
-                switch (info.KeyChar)
-                 {
-                    case 'q':
-                        Console.WriteLine("q was pressed");
-                        exitKey = true;
-                        break;
-                    case 'w':
-                        Console.WriteLine("W was pressed");
-                        newpos.x = playerA.location.x;
-                        newpos.y = playerA.location.y - 1;
-                        if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit" || map.getLocation(newpos) == "monster")
-                        {
-                            Console.SetCursorPosition(playerA.location.x, playerA.location.y);
-                            Console.Write(" ");
-                            map.setLocation("open", playerA.location);
-                            Console.SetCursorPosition(newpos.x, newpos.y);
-                            Console.Write(playerA.character);
-                            map.setLocation(playerA.character, newpos);
-                            playerA.location = newpos;
-                            swordDirection = "up";
-                        }
-                        break;
-                    case 'a':
-                        Console.WriteLine("A was pressed");
-                        newpos.x = playerA.location.x - 1;
-                        newpos.y = playerA.location.y;
-                        if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit" || map.getLocation(newpos) == "monster")
-                        {
-                            Console.SetCursorPosition(playerA.location.x, playerA.location.y);
-                            Console.Write(" ");
-                            map.setLocation("open", playerA.location);
-                            Console.SetCursorPosition(newpos.x, newpos.y);
-                            Console.Write(playerA.character);
-                            map.setLocation(playerA.character, newpos);
-                            playerA.location = newpos;
-                            swordDirection = "left";
-                        }
-                        break;
-                    case 's':
-                        Console.WriteLine("S was pressed ");
-                        newpos.x = playerA.location.x;
-                        newpos.y = playerA.location.y + 1;
-                        if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit" || map.getLocation(newpos) == "monster")
-                        {
-                            Console.SetCursorPosition(playerA.location.x, playerA.location.y);
-                            Console.Write(" ");
-                            map.setLocation("open", playerA.location);
-                            Console.SetCursorPosition(newpos.x, newpos.y);
-                            Console.Write(playerA.character);
-                            map.setLocation(playerA.character, newpos);
-                            playerA.location = newpos;
-                            swordDirection = "down";
-                        }
-                        break;
-                    case 'd':
-                        Console.WriteLine("D was pressed ");
-                        newpos.x = playerA.location.x + 1;
-                        newpos.y = playerA.location.y;
-                        if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit" || map.getLocation(newpos) == "monster")
-                        {
-                            Console.SetCursorPosition(playerA.location.x, playerA.location.y);
-                            Console.Write(" ");
-                            map.setLocation("open", playerA.location);
-                            Console.SetCursorPosition(newpos.x, newpos.y);
-                            Console.Write(playerA.character);
-                            map.setLocation(playerA.character, newpos);
-                            playerA.location = newpos;
-                            swordDirection = "right:";
-                        }
-                    break;
-                    case 'l':
-                        Console.WriteLine("L was pressed");
-                        location = map.getLocation("open");
-                        Console.SetCursorPosition(location.x, location.y);
-                        Console.Write("X");  
-                        Console.SetCursorPosition(0, Console.WindowHeight-1);
-                        Console.Write("Valid open space at [{0},{1}]", location.x, location.y);
-                        break;
+                if (Console.KeyAvailable)
+                {
+                    var info = Console.ReadKey(true);
+                    switch (info.KeyChar)
+                    {
+                        case 'q':
+                            Console.WriteLine("q was pressed");
+                            exitKey = true;
+                            break;
+                        case 'w':
+                            Console.WriteLine("W was pressed");
+                            newpos.x = playerA.location.x;
+                            newpos.y = playerA.location.y - 1;
+                            if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit" || map.getLocation(newpos) == "monster" || map.getLocation(newpos) == "treasure")
+                            {
+                                Console.SetCursorPosition(playerA.location.x, playerA.location.y);
+                                Console.Write(" ");
+                                map.setLocation("open", playerA.location);
+                                Console.SetCursorPosition(newpos.x, newpos.y);
+                                Console.Write(playerA.character);
+                                map.setLocation(playerA.character, newpos);
+                                playerA.location = newpos;
+                                swordDirection = "up";
+                            }
+                            break;
+                        case 'a':
+                            Console.WriteLine("A was pressed");
+                            newpos.x = playerA.location.x - 1;
+                            newpos.y = playerA.location.y;
+                            if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit" || map.getLocation(newpos) == "monster" || map.getLocation(newpos) == "treasure")
+                            {
+                                Console.SetCursorPosition(playerA.location.x, playerA.location.y);
+                                Console.Write(" ");
+                                map.setLocation("open", playerA.location);
+                                Console.SetCursorPosition(newpos.x, newpos.y);
+                                Console.Write(playerA.character);
+                                map.setLocation(playerA.character, newpos);
+                                playerA.location = newpos;
+                                swordDirection = "left";
+                            }
+                            break;
+                        case 's':
+                            Console.WriteLine("S was pressed ");
+                            newpos.x = playerA.location.x;
+                            newpos.y = playerA.location.y + 1;
+                            if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit" || map.getLocation(newpos) == "monster" || map.getLocation(newpos) == "treasure")
+                            {
+                                Console.SetCursorPosition(playerA.location.x, playerA.location.y);
+                                Console.Write(" ");
+                                map.setLocation("open", playerA.location);
+                                Console.SetCursorPosition(newpos.x, newpos.y);
+                                Console.Write(playerA.character);
+                                map.setLocation(playerA.character, newpos);
+                                playerA.location = newpos;
+                                swordDirection = "down";
+                            }
+                            break;
+                        case 'd':
+                            Console.WriteLine("D was pressed ");
+                            newpos.x = playerA.location.x + 1;
+                            newpos.y = playerA.location.y;
+                            if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == "exit" || map.getLocation(newpos) == "monster" || map.getLocation(newpos) == "treasure")
+                            {
+                                Console.SetCursorPosition(playerA.location.x, playerA.location.y);
+                                Console.Write(" ");
+                                map.setLocation("open", playerA.location);
+                                Console.SetCursorPosition(newpos.x, newpos.y);
+                                Console.Write(playerA.character);
+                                map.setLocation(playerA.character, newpos);
+                                playerA.location = newpos;
+                                swordDirection = "right:";
+                            }
+                            break;
+                        case 'l':
+                            Console.WriteLine("L was pressed");
+                            location = map.getLocation("open");
+                            Console.SetCursorPosition(location.x, location.y);
+                            Console.Write("X");
+                            Console.SetCursorPosition(0, Console.WindowHeight - 1);
+                            Console.Write("Valid open space at [{0},{1}]", location.x, location.y);
+                            break;
+                    }
                 }
                 
                 if (map.foundTreasure == true)
@@ -139,13 +152,9 @@ namespace Fun_Game___Probably_Not
 
                     
                 }
-                if (generateMonster == true)
-                {
-                    MyElapsedMethod();
-                    generateMonster = false;
-                }
                 if (map.foundExit == true)
                 {
+                    monster.Clear();
                     Console.Clear();
                     Console.WriteLine("GG Level Clear");
                     floorNumber++;
@@ -168,14 +177,14 @@ namespace Fun_Game___Probably_Not
                     map.setLocation(treasure.character, treasure.location);
                     Console.SetCursorPosition(treasure.location.x, treasure.location.y);
                     Console.Write(treasure.character);
+                    generateMonsters(monster, floorNumber, map);
                     map.foundExit = false;
-                    for (int timesRun = 0; timesRun < floorNumber; timesRun++)
-                    {
-                        enemy.location = map.getLocation("open");
-                        map.setLocation(enemy.character, enemy.location);
-                        Console.SetCursorPosition(enemy.location.x, enemy.location.y);
-                        Console.Write(enemy.character);
-                    }
+                }
+
+                if (DateTime.Now > time + interval) 
+                {
+                    moveMonsters(monster, map);
+                    time = DateTime.Now;
                 }
 
             }
@@ -210,10 +219,7 @@ namespace Fun_Game___Probably_Not
             }
 
         }
-        public static void Sword()
-        {
-            if()
-        }
+
 
 
         private static void locationmap()
@@ -237,11 +243,81 @@ namespace Fun_Game___Probably_Not
             gametimer.Start();
 
         }
-        
 
-        public static void movemonster()
+        public static void  generateMonsters(List<Player> monsters, int level, Map map)
         {
+            for (int i = 0; i <= level; i++)
+            {
+                Player monster = new Player();
+                monster.character = "M";
+                monster.location = map.getLocation("open");
+                map.setLocation(monster.character, monster.location);
+                Console.SetCursorPosition(monster.location.x, monster.location.y);
+                Console.Write(monster.character);
+                monsters.Add(monster);
+                
+
+            }
 
         }
+        public static void moveMonsters(List<Player> monsters, Map map)
+        {
+
+            for (int i = 0; i < monsters.Count; i++)
+            {
+                var rng = new Random();
+                int direction = rng.Next(4);
+                //1 = a    2 = w    3 = d    4 = s
+                map.setLocation("open", monsters[i].location);
+                Console.SetCursorPosition(monsters[i].location.x, monsters[i].location.y);
+                Console.Write(" ");
+                coordinate newpos = new coordinate();
+                newpos.x = monsters[i].location.x;
+                newpos.y = monsters[i].location.y;
+                if (direction == 0)
+                {
+                    newpos.x = monsters[i].location.x - 1;
+                    newpos.y = monsters[i].location.y;
+                    if (map.getLocation(newpos) == "open")
+                    {
+                        monsters[i].location.x = monsters[i].location.x - 1;
+                    }
+
+                }
+                if (direction == 1)
+                {
+                    newpos.x = monsters[i].location.x;
+                    newpos.y = monsters[i].location.y + 1;
+                    if (map.getLocation(newpos) == "open")
+                    {
+                        monsters[i].location.y = monsters[i].location.y + 1;
+                    }
+                }
+                if (direction == 2)
+                {
+                    newpos.x = monsters[i].location.x + 1;
+                    newpos.y = monsters[i].location.y;
+                    if (map.getLocation(newpos) == "open")
+                    {
+                        monsters[i].location.x = monsters[i].location.x + 1;
+                    }
+                }
+                if (direction == 3)
+                {
+                    newpos.x = monsters[i].location.x;
+                    newpos.y = monsters[i].location.y - 1;
+                    if (map.getLocation(newpos) == "open")
+                    {
+                        monsters[i].location.y = monsters[i].location.y - 1;
+                    }
+                }
+                Console.SetCursorPosition(monsters[i].location.x, monsters[i].location.y);
+                Console.Write(monsters[i].character);
+                map.setLocation(monsters[i].character, monsters[i].location);
+
+            }
+        }
+
+
     }
 }

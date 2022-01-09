@@ -28,7 +28,7 @@ namespace Fun_Game___Probably_Not
 			string tempString = chart[toFind.x, toFind.y];
 			if (tempString == "T") 
             {
-				tempString = "open";
+				tempString = "treasure";
 				foundTreasure = true;
 				
             }

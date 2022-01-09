@@ -13,8 +13,15 @@ namespace Fun_Game___Probably_Not
         public int mana = 100;
         public int strength = 10;
         public string character;
+        public string previousDirection;
         public coordinate location = new coordinate();
 
-        
+    
+    
     }
+    
 }
+
+
+
+

@@ -128,7 +128,7 @@ namespace Fun_Game___Probably_Not
                                 Console.Write(playerA.character);
                                 map.setLocation(playerA.character, newpos);
                                 playerA.location = newpos;
-                                swordDirection = "right:";
+                                swordDirection = "right";
                             }
                             break;
                         case 'l':
@@ -138,6 +138,9 @@ namespace Fun_Game___Probably_Not
                             Console.Write("X");
                             Console.SetCursorPosition(0, Console.WindowHeight - 1);
                             Console.Write("Valid open space at [{0},{1}]", location.x, location.y);
+                            break;
+                        case 'e':
+                            SwordSwing();
                             break;
                     }
                 }
@@ -317,7 +320,43 @@ namespace Fun_Game___Probably_Not
 
             }
         }
+        public static void SwordSwing()
+        {
+            coordinate newpos = new coordinate();
+            Map map = new Map();
+            
+            switch (swordDirection)
+            {
+                case "down":
+                    newpos.x = playerA.location.x;
+                    newpos.y = playerA.location.y + 1;
+                    break;
+                case "up":
+                    newpos.x = playerA.location.x;
+                    newpos.y = playerA.location.y - 1;
+                    break;
+                case "right":
+                    newpos.x = playerA.location.x + 1;
+                    newpos.y = playerA.location.y;
+                    break;
+                case "left":
+                    newpos.x = playerA.location.x - 1;
+                    newpos.y = playerA.location.y;
+                    break;
+            }
+
+            if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == enemy.character)
+            {
+                Console.SetCursorPosition(newpos.x, newpos.y);
+                Console.Write('S');
+                System.Threading.Thread.Sleep(500);
+                Console.SetCursorPosition(newpos.x, newpos.y);
+                Console.Write(' ');
+
+            }
 
 
+        }
     }
+        
 }

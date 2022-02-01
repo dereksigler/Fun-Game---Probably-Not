@@ -17,6 +17,7 @@ namespace Fun_Game___Probably_Not
         public static Timer gametimer = new Timer(1000);
         public static List<Player> monster = new List<Player>();
         public static coordinate location = new coordinate();
+        public static bool isAttacking = false;
         public static bool generateMonster = false;
         public static string swordDirection = "down";
         public static DateTime time = DateTime.Now;
@@ -58,7 +59,7 @@ namespace Fun_Game___Probably_Not
 
                 Console.SetCursorPosition(0, 1);
                 coordinate newpos = new coordinate();
-                if (Console.KeyAvailable)
+                if (Console.KeyAvailable & isAttacking == false)
                 {
                     var info = Console.ReadKey(true);
                     switch (info.KeyChar)
@@ -140,7 +141,10 @@ namespace Fun_Game___Probably_Not
                             Console.Write("Valid open space at [{0},{1}]", location.x, location.y);
                             break;
                         case 'e':
-                            SwordSwing();
+                            if (isAttacking == true)
+                            {
+                                SwordSwing();
+                            }
                             break;
                     }
                 }
@@ -324,37 +328,40 @@ namespace Fun_Game___Probably_Not
         {
             coordinate newpos = new coordinate();
             Map map = new Map();
-            
-            switch (swordDirection)
+            if (isAttacking == false)
             {
-                case "down":
-                    newpos.x = playerA.location.x;
-                    newpos.y = playerA.location.y + 1;
-                    break;
-                case "up":
-                    newpos.x = playerA.location.x;
-                    newpos.y = playerA.location.y - 1;
-                    break;
-                case "right":
-                    newpos.x = playerA.location.x + 1;
-                    newpos.y = playerA.location.y;
-                    break;
-                case "left":
-                    newpos.x = playerA.location.x - 1;
-                    newpos.y = playerA.location.y;
-                    break;
+                switch (swordDirection)
+                {
+                    case "down":
+                        newpos.x = playerA.location.x;
+                        newpos.y = playerA.location.y + 1;
+                        break;
+                    case "up":
+                        newpos.x = playerA.location.x;
+                        newpos.y = playerA.location.y - 1;
+                        break;
+                    case "right":
+                        newpos.x = playerA.location.x + 1;
+                        newpos.y = playerA.location.y;
+                        break;
+                    case "left":
+                        newpos.x = playerA.location.x - 1;
+                        newpos.y = playerA.location.y;
+                        break;
+                }
             }
-
             if (map.getLocation(newpos) == "open" || map.getLocation(newpos) == enemy.character)
             {
+                isAttacking = true;
                 Console.SetCursorPosition(newpos.x, newpos.y);
                 Console.Write('S');
                 System.Threading.Thread.Sleep(500);
                 Console.SetCursorPosition(newpos.x, newpos.y);
                 Console.Write(' ');
+                isAttacking = false;
 
             }
-
+ 
 
         }
     }
